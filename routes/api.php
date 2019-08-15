@@ -13,6 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+$api_version_prefix = 'Api\\' . config('api.API_VERSION') . '\\';
+
+
+
+Route::get('bookings', $api_version_prefix . 'BookingController@showAllBookings');
+
+
+Route::get('bookings/{date}', $api_version_prefix . 'BookingController@listOfBookingsOnDate');
+
+
+Route::post('bookings', $api_version_prefix . 'BookingController@storeNewBooking');
+
+
+Route::put('bookings', $api_version_prefix . 'BookingController@store');
+
+Route::delete('bookings', $api_version_prefix . 'BookingController@deleteBooking');
