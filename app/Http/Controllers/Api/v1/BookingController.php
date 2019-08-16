@@ -98,9 +98,14 @@ class BookingController extends Controller
          * validate that the date passed to this function is valid to store in the database
          * if the date is invalid  
          */
-
-        $bookings = DB::table('bookings')->where('booking_date', '=', $date)->orderBy('booking_hour', 'asc')->get();
-        return new BookingResource($bookings);
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date)) {
+            $bookings = DB::table('bookings')->where('booking_date', '=', $date)->orderBy('booking_hour', 'asc')->get();
+            return new BookingResource($bookings);
+        } else {
+            return response()->json([
+                'error' => "Invalid Date acepted date 'YYYY-MM-DD"
+            ], 422);
+        }
     }
 
     /**
