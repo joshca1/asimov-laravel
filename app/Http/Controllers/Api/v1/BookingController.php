@@ -92,14 +92,14 @@ class BookingController extends Controller
      * @param  date $date
      * @return \Illuminate\Http\Response
      */
-    public function listOfBookingsOnDate($date)
+    public function listOfBookingsOnDate(Request $date)
     {
         /**
          * validate that the date passed to this function is valid to store in the database
          * if the date is invalid  
          */
+        echo $date;
 
-        $valid_db_date = preg_match("/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/", $date);
         $bookings = DB::table('bookings')->where('booking_date', '=', $date)->orderBy('booking_hour', 'asc')->get();
         return new BookingResource($bookings);
     }
@@ -110,10 +110,10 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -122,10 +122,10 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
 
     /**
      * Delete an existing Booking.
@@ -133,11 +133,11 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteBooking($id)
-    {
-        $booking = Booking::findOrFail($id);
-        if ($booking->delete()) {
-            return new BookingResource($booking);
-        }
-    }
+    // public function deleteBooking($id)
+    // {
+    //     $booking = Booking::findOrFail($id);
+    //     if ($booking->delete()) {
+    //         return new BookingResource($booking);
+    //     }
+    // }
 }

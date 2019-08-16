@@ -25,7 +25,8 @@ Route::get('bookings/{date}', $api_version_prefix . 'BookingController@listOfBoo
 
 Route::post('bookings', $api_version_prefix . 'BookingController@storeNewBooking');
 
+//pending for expansion on this project 
 
-Route::put('bookings', $api_version_prefix . 'BookingController@store');
+// Route::put('bookings', $api_version_prefix . 'BookingController@store');
 
-Route::delete('bookings', $api_version_prefix . 'BookingController@deleteBooking');
+// Route::delete('bookings', $api_version_prefix . 'BookingController@deleteBooking');
