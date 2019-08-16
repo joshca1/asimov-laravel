@@ -92,18 +92,14 @@ class BookingController extends Controller
      * @param  date $date
      * @return \Illuminate\Http\Response
      */
-    public function listOfBookingsOnDate(Request $date)
+    public function listOfBookingsOnDate($date)
     {
         /**
          * validate that the date passed to this function is valid to store in the database
          * if the date is invalid  
          */
-        $validatedData =  $date->validate([
-            'date' => 'bail|required|date',
-        ]);
-        $validatedDate = $validatedData['date'];
-        echo $validatedDate;
-        $bookings = DB::table('bookings')->where('booking_date', '=', $validatedDate)->orderBy('booking_hour', 'asc')->get();
+
+        $bookings = DB::table('bookings')->where('booking_date', '=', $date)->orderBy('booking_hour', 'asc')->get();
         return new BookingResource($bookings);
     }
 
