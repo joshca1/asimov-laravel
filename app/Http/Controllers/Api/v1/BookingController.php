@@ -70,11 +70,10 @@ class BookingController extends Controller
         $hourIsAlreadyBooked = $this->isTheHourAlreadyBooked($date, $hour);
 
         if ($lastHourAlreadyBooked || $hourIsAlreadyBooked) {
-            return response()->json([
-                'error' => 'That Hour is already booked,' .
+            abort(422, "That Hour is already booked,' .
                     ' or you are trying to book more than' .
-                    ' 1 hour in a row.'
-            ], 422);
+                    ' 1 hour in a row");
+
         }
 
         $booking = new Booking;
